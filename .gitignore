@@ -1,0 +1,21 @@
+# "temporary" build files
+*/target
+
+# User-specific stuff:
+*/.idea/
+*/*.iml
+
+## File-based project format:
+Amplifine/*.iws
+
+## Plugin-specific files:
+
+# Target
+*/target/
+*/.slcache/
+
+# IntelliJ
+*/out/
+
+# mpeltonen/sbt-idea plugin
+*/.idea_modules/
