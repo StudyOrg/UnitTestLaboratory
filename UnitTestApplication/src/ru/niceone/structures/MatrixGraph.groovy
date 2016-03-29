@@ -1,28 +1,44 @@
 package ru.niceone.structures
 
-public class Graph<T> {
-    private List<List<T>> graph
+public class MatrixGraph {
+    private List<List<Boolean>> graph
     private Integer graphSize
 
-    public Graph() {
+    public MatrixGraph() {
         graph = []
     }
 
     public void loadFromFile(File file) {
+        int currentLine = 0
+        int lastSize = -1
+
         file.eachLine { line ->
             def sublist = []
+            int currentSize = -1
 
             if (line) {
+                ++currentLine
+
                 line = line.tokenize(" ")
 
                 line.each { edge ->
                     sublist << edge.equals("1")
                 }
 
-                graph << sublist
+                currentSize = sublist.size()
+                if (lastSize == -1 || lastSize == currentSize) {
+                    graph << sublist
+                    lastSize = currentSize
+                } else {
+                    throw new Exception("Row " + currentLine + " doesn't fit to length: got " + currentSize + ", await " + lastSize)
+                }
             }
 
-            graphSize = sublist.size()
+            if (currentSize < currentLine) {
+                throw new Exception("Matrix isn't square")
+            }
+
+            graphSize = currentSize
         }
     }
 

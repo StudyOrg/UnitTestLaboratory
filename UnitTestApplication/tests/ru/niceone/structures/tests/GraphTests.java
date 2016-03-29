@@ -3,11 +3,11 @@ package ru.niceone.structures.tests;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import ru.niceone.structures.Graph;
+import ru.niceone.structures.MatrixGraph;
 
 import java.util.Set;
 
-public class BfsTests {
+public class GraphTests {
     private static Integer seq0[];
     private static Integer seq1[];
     private static Integer seq2[];
@@ -26,11 +26,11 @@ public class BfsTests {
     private static Integer parents6[];
     private static Integer parents7[];
 
-    private static Graph g;
+    private static MatrixGraph g;
 
     @BeforeClass
     public static void init() {
-        g = new Graph();
+        g = new MatrixGraph();
 
         seq0 = new Integer[]{0, 1, 3, 5, 7, 6, 2};
         seq1 = new Integer[]{1};

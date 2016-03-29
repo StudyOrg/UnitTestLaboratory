@@ -1,6 +1,6 @@
 package ru.niceone
 
-import ru.niceone.structures.Graph
+import ru.niceone.structures.MatrixGraph
 
 class Application {
 
@@ -9,7 +9,7 @@ class Application {
     public static void main(args) {
         File matrixVertices = new File(PATH)
 
-        Graph<Boolean> g = new Graph<>()
+        MatrixGraph g = new MatrixGraph<>()
         g.loadFromFile(matrixVertices)
 
         println(g.breadthFirstSearch().parents.join(", "))
