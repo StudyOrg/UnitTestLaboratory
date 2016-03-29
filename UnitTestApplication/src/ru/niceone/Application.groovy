@@ -4,7 +4,7 @@ import ru.niceone.structures.MatrixGraph
 
 class Application {
 
-    private static final String PATH = "C:\\Users\\roman\\Code\\UnitTestLaboratory\\UnitTestApplication\\other\\matrix.txt";
+    private static final String PATH = "Datasets/matrix.txt";
 
     public static void main(args) {
         File matrixVertices = new File(PATH)
