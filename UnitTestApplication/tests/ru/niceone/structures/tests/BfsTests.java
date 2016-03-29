@@ -55,7 +55,7 @@ public class BfsTests {
     public void test_results() {
         Set keys = g.breadthFirstSearch().keySet();
 
-        for (Object key: keys) {
+        for (Object key : keys) {
             Assert.assertArrayEquals((key.equals("seq") ? seq0 : parents0), (Integer[]) g.breadthFirstSearch(0).get(key));
             Assert.assertArrayEquals((key.equals("seq") ? seq1 : parents1), (Integer[]) g.breadthFirstSearch(1).get(key));
             Assert.assertArrayEquals((key.equals("seq") ? seq2 : parents2), (Integer[]) g.breadthFirstSearch(2).get(key));
