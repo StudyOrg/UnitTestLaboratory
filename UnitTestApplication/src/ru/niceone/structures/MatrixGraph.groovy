@@ -1,13 +1,23 @@
 package ru.niceone.structures
 
-public class MatrixGraph {
-    private List<List<Boolean>> graph
+import groovy.json.JsonSlurper
+
+public class MatrixGraph<T> {
+    // Матрица смежности
+    private List<List<Boolean>> matrix
+    // Данные
+    private List<T> data
+    // Размер графа
     private Integer graphSize
+    // Путь, пройденный алгоритм к узлу при выполнении алгоритма
+    private ArrayList<Integer> lastPath
 
     public MatrixGraph() {
-        graph = []
+        matrix = []
+        data = []
     }
 
+    @Deprecated
     public void loadFromFile(File file) {
         int currentLine = 0
         int lastSize = -1
@@ -27,7 +37,7 @@ public class MatrixGraph {
 
                 currentSize = sublist.size()
                 if (lastSize == -1 || lastSize == currentSize) {
-                    graph << sublist
+                    matrix << sublist
                     lastSize = currentSize
                 } else {
                     throw new Exception("Row " + currentLine + " doesn't fit to length: got " + currentSize + ", await " + lastSize)
@@ -42,45 +52,99 @@ public class MatrixGraph {
         }
     }
 
-    public Map breadthFirstSearch(Integer rootVertex = 0) {
-        def resultSequence = []
+    public void loadFromJson(File file) {
+        JsonSlurper parser = new JsonSlurper()
+        def object = parser.parse(file)
 
-        def parents = []
+        if (!object) {
+            throw new FileNotFoundException("File with data not found")
+        }
 
-        for (def i = 0; i < this.graphSize; i++)
-            parents << null
+        if (!object?.values) {
+            throw new BadFormatException("Values field missed in JSON file")
+        }
 
-        def bfsQueue = [] as Queue<Integer>
+        if (!(object.values instanceof List)) {
+            throw new BadFormatException("Values field don't contain array of values")
+        }
 
-        bfsQueue << rootVertex
-        resultSequence << rootVertex
+        if (!object?.matrix) {
+            throw new BadFormatException("Incidence matrix missed in JSON file")
+        }
 
-        while (!bfsQueue.isEmpty()) {
-            def vertex = bfsQueue.remove()
-            def childVertexes = getChildVertices(vertex, this.graph)
+        if (!(object.matrix instanceof List<List>)) {
+            throw new BadFormatException("Matrix field don't contain 2d-array of intersections")
+        }
 
-            childVertexes.each { vNum ->
-                if (!resultSequence.find() { it == vNum }) {
-                    parents[vNum] = vertex
+        int graphNodesCount = object.values.size()
 
-                    resultSequence << vNum
-                    bfsQueue << vNum
+        if (object.matrix.size() != graphNodesCount) {
+            throw new BadFormatException("Cols count in matrix doesn't equal to values count")
+        }
+
+        object.matrix.eachWithIndex { val, int i ->
+            if (val.size() != graphNodesCount) {
+                throw new BadFormatException("Rows count in matrix doesn't equal to values count")
+            } else {
+                def sublist = []
+
+                object.matrix[i].each { element ->
+                    sublist << element.equals(1)
+                }
+
+                this.matrix << sublist
+            }
+        }
+
+        object.values.each { val ->
+            this.data << val
+        }
+
+        this.graphSize = graphNodesCount
+    }
+
+    public Map breadthFirstSearch(T object, int rootNode = 0) {
+        ArrayList<Boolean> nodesVisits = []
+        ArrayList<Integer> path = []
+        Deque<Integer> queue = new ArrayDeque<>()
+
+        // Заполнение признака посещенного узла
+        for (def i = 0; i < this.graphSize; i++) {
+            nodesVisits << false
+        }
+
+        queue << rootNode
+        nodesVisits[rootNode] = true
+
+        while (!queue.isEmpty()) {
+            int node = queue.removeFirst()
+
+            if (data[node] == object) {
+                return [founded: true, path: path]
+            }
+
+            getChildren(node).each { int childNode ->
+                if (!nodesVisits[childNode]) {
+                    queue.addLast(childNode)
+                    nodesVisits[childNode] = true
+
+                    path << childNode
                 }
             }
         }
 
-        return [seq: resultSequence as Integer[], parents: parents as Integer[]]
+        return [founded: false, path: path]
     }
 
-    public List getChildVertices(Integer vertexNum, List graph) {
-        def edges = graph[vertexNum]
-        def vertexes = []
+    public List getChildren(int node) {
+        def edges = this.matrix[node]
+        def nodes = []
 
         edges.eachWithIndex { edge, i ->
             if (edge)
-                vertexes << i
+                nodes << i
         }
 
-        return vertexes
+        return nodes
     }
 }

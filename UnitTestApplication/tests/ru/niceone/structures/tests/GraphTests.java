@@ -1,11 +1,8 @@
 package ru.niceone.structures.tests;
 
-import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import ru.niceone.structures.MatrixGraph;
-
-import java.util.Set;
 
 public class GraphTests {
     private static Integer seq0[];
@@ -53,17 +50,6 @@ public class GraphTests {
 
     @Test
     public void test_results() {
-        Set keys = g.breadthFirstSearch().keySet();
 
-        for (Object key : keys) {
-            Assert.assertArrayEquals((key.equals("seq") ? seq0 : parents0), (Integer[]) g.breadthFirstSearch(0).get(key));
-            Assert.assertArrayEquals((key.equals("seq") ? seq1 : parents1), (Integer[]) g.breadthFirstSearch(1).get(key));
-            Assert.assertArrayEquals((key.equals("seq") ? seq2 : parents2), (Integer[]) g.breadthFirstSearch(2).get(key));
-            Assert.assertArrayEquals((key.equals("seq") ? seq3 : parents3), (Integer[]) g.breadthFirstSearch(3).get(key));
-            Assert.assertArrayEquals((key.equals("seq") ? seq4 : parents4), (Integer[]) g.breadthFirstSearch(4).get(key));
-            Assert.assertArrayEquals((key.equals("seq") ? seq5 : parents5), (Integer[]) g.breadthFirstSearch(5).get(key));
-            Assert.assertArrayEquals((key.equals("seq") ? seq6 : parents6), (Integer[]) g.breadthFirstSearch(6).get(key));
-            Assert.assertArrayEquals((key.equals("seq") ? seq7 : parents7), (Integer[]) g.breadthFirstSearch(7).get(key));
-        }
     }
 }
