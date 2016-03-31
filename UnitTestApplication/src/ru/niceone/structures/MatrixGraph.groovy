@@ -17,42 +17,28 @@ public class MatrixGraph<T> {
         data = []
     }
 
-    @Deprecated
-    public void loadFromFile(File file) {
-        int currentLine = 0
-        int lastSize = -1
+    public void setGraph(List<T> data, List<List<Boolean>> matrix) {
+        int dataSize = data.size()
 
-        file.eachLine { line ->
-            def sublist = []
-            int currentSize = -1
-
-            if (line) {
-                ++currentLine
-
-                line = line.tokenize(" ")
-
-                line.each { edge ->
-                    sublist << edge.equals("1")
-                }
-
-                currentSize = sublist.size()
-                if (lastSize == -1 || lastSize == currentSize) {
-                    matrix << sublist
-                    lastSize = currentSize
-                } else {
-                    throw new Exception("Row " + currentLine + " doesn't fit to length: got " + currentSize + ", await " + lastSize)
-                }
-            }
-
-            if (currentSize < currentLine) {
-                throw new Exception("Matrix isn't square")
-            }
-
-            graphSize = currentSize
+        if (matrix.size() != dataSize) {
+            throw new BadFormatException("Cols count in matrix doesn't equal to values count")
         }
+
+        for (i in matrix) {
+            if (i.size() != dataSize) {
+                throw new BadFormatException("Rows count in matrix doesn't equal to values count")
+            }
+        }
+
+        this.data = data
+        this.matrix = matrix
+        this.graphSize = dataSize
     }
 
     public void loadFromJson(File file) {
+        this.matrix = []
+        this.data = []
+
         JsonSlurper parser = new JsonSlurper()
         def object = parser.parse(file)
 

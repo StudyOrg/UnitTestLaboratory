@@ -10,9 +10,11 @@ class Application {
         File matrixVerticesJson = new File(JSON)
 
         MatrixGraph<String> g = new MatrixGraph<>()
-        g.loadFromJson(matrixVerticesJson)
+        //g.loadFromJson(matrixVerticesJson)
 
-        def result = g.breadthFirstSearch("G")
+        g.setGraph(["X", "Y", "Z"], [[0, 1, 1], [1, 0, 0], [1, 0, 0]])
+
+        def result = g.breadthFirstSearch("Y")
 
         if (result.founded) {
             println "Founded at " + (result.path == [0] ? "beginning" : result.path)
