@@ -60,20 +60,12 @@ public class MatrixGraph<T> {
             throw new FileNotFoundException("File with data not found")
         }
 
-        if (!object?.values) {
-            throw new BadFormatException("Values field missed in JSON file")
+        if (!object?.values || !(object.values instanceof List)) {
+            throw new BadFormatException("'values' field missed or doesn't contains values list")
         }
 
-        if (!(object.values instanceof List)) {
-            throw new BadFormatException("Values field don't contain array of values")
-        }
-
-        if (!object?.matrix) {
-            throw new BadFormatException("Incidence matrix missed in JSON file")
-        }
-
-        if (!(object.matrix instanceof List<List>)) {
-            throw new BadFormatException("Matrix field don't contain 2d-array of intersections")
+        if (!object?.matrix || !(object.matrix instanceof List<List>)) {
+            throw new BadFormatException("'matrix' field missed or doesn't contains 2d matrix")
         }
 
         int graphNodesCount = object.values.size()
@@ -103,7 +95,7 @@ public class MatrixGraph<T> {
         this.graphSize = graphNodesCount
     }
 
-    public Map breadthFirstSearch(T object, int rootNode = 0) {
+    public SearchResult breadthFirstSearch(T object) {
         ArrayList<Boolean> nodesVisits = []
         ArrayList<Integer> path = []
         Deque<Integer> queue = new ArrayDeque<>()
@@ -113,27 +105,27 @@ public class MatrixGraph<T> {
             nodesVisits << false
         }
 
-        queue << rootNode
-        nodesVisits[rootNode] = true
+        queue << 0
+        nodesVisits[0] = true
 
         while (!queue.isEmpty()) {
             int node = queue.removeFirst()
 
+            path << node
+
             if (data[node] == object) {
-                return [founded: true, path: path]
+                return new SearchResult(true, path)
             }
 
             getChildren(node).each { int childNode ->
                 if (!nodesVisits[childNode]) {
                     queue.addLast(childNode)
                     nodesVisits[childNode] = true
-
-                    path << childNode
                 }
             }
         }
 
-        return [founded: false, path: path]
+        return new SearchResult(false, path)
     }
 
     public List getChildren(int node) {

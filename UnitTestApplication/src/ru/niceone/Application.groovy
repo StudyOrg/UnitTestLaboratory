@@ -12,10 +12,10 @@ class Application {
         MatrixGraph<String> g = new MatrixGraph<>()
         g.loadFromJson(matrixVerticesJson)
 
-        def result = g.breadthFirstSearch("A")
+        def result = g.breadthFirstSearch("G")
 
         if (result.founded) {
-            println "Founded at " + (result.path ?: "beginning")
+            println "Founded at " + (result.path == [0] ? "beginning" : result.path)
         } else {
             println "Not founded, path " + result.path
         }
