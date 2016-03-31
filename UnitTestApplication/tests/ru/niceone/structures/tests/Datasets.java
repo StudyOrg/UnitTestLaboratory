@@ -1,6 +1,6 @@
-package ru.niceone.util;
+package ru.niceone.structures.tests;
 
-public class Datasets {
+class Datasets {
     public static String[] dataset_small = {"Foo", "Bar", "Fee"};
     public static Boolean[][] matrix_small = {
             {false, true, true},

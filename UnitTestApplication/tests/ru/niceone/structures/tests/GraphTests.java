@@ -8,7 +8,6 @@ import org.junit.rules.ExpectedException;
 import ru.niceone.structures.BadFormatException;
 import ru.niceone.structures.MatrixGraph;
 import ru.niceone.structures.SearchResult;
-import ru.niceone.util.Datasets;
 
 import java.io.File;
 import java.util.Arrays;
