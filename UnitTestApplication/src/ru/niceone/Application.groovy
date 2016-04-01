@@ -34,9 +34,18 @@ class Application {
 
         ArrayList<Double> cosResults = new ArrayList<>()
         for (double x = 0.0; x < 2.0; x += 0.1) {
-            cosResults << Math.cos(x)
+            double a = Math.cos(x)
+            cosResults << a
         }
 
-        print(cosResults.join(";"))
+        println("Косинус от Ромы: ${cosResults.join("\t")}")
+
+        cosResults = []
+        for (double x = 0.0; x < 2.0; x += 0.1) {
+            double a = java.lang.Math.cos(x)
+            cosResults << a
+        }
+
+        println("Косинус от жавы: ${cosResults.join("\t")}")
     }
 }
