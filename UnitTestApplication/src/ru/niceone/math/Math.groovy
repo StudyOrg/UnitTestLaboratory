@@ -8,14 +8,15 @@ class Math {
     }
 
     public static double cos(double x) {
+        double sqrX = x * x
         double term = 1.0
-        double doubleX = x * x
-        double sum = 1.0 + (doubleX / 2.0)
+        double sum = 1.0
 
         printf("x: [%.2f] ", x)
 
-        for (int i = 2; i < 10; i++) {
-            term *= doubleX / (i-1) * i
+        for (int i = 1; i < 9; i++) {
+            term *= sqrX / ((2*i - 1) * 2*i)
+
             if ((i % 2) == 1) {
                 sum -= term
             } else {
