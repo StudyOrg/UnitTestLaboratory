@@ -14,7 +14,7 @@ class Math {
 
         printf("x: [%.2f] ", x)
 
-        for (int i = 1; i < 9; i++) {
+        for (int i = 1; i < 11; i++) {
             term *= sqrX / ((2*i - 1) * 2*i)
 
             if ((i % 2) == 1) {
