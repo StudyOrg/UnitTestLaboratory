@@ -1,5 +1,6 @@
 package ru.niceone
 
+import ru.niceone.math.Math
 import ru.niceone.structures.MatrixGraph
 
 class Application {
@@ -30,5 +31,12 @@ class Application {
         } else {
             println "Not founded, path " + result.path
         }
+
+        ArrayList<Double> cosResults = new ArrayList<>()
+        for (double x = 0.0; x < 2.0; x += 0.1) {
+            cosResults << Math.cos(x)
+        }
+
+        print(cosResults.join(";"))
     }
 }
