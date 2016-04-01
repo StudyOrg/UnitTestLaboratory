@@ -10,6 +10,10 @@ class Application {
     public static void main(args) {
         File matrixVerticesJson = new File(JSON)
 
+        def a = new File("a")
+        println a.absolutePath
+        println matrixVerticesJson.absolutePath
+
         MatrixGraph<String> g = new MatrixGraph<>()
 
         g.setGraph(["X", "Y", "Z"], [[0, 1, 1], [1, 0, 0], [1, 0, 0]])
