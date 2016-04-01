@@ -5,7 +5,7 @@ import ru.niceone.structures.MatrixGraph
 
 class Application {
 
-    private static final String JSON = "Datasets/data.json";
+    private static final String JSON = "Datasets/data.json"
 
     public static void main(args) {
         File matrixVerticesJson = new File(JSON)

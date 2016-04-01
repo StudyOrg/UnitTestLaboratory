@@ -15,6 +15,7 @@ Amplifine/*.iws
 */.slcache/
 
 # IntelliJ
+/out/
 */out/
 
 # mpeltonen/sbt-idea plugin
