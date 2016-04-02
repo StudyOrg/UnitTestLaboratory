@@ -14,11 +14,9 @@ public class MathTests {
     }
 
     @Test
-    public void positive_dataset() {
-        int i = 0;
-        for (double x = Datasets.begin; x <= Datasets.end; x += Datasets.step) {
-            System.out.print(x + " ");
-            Assert.assertEquals(Datasets.set[i], Math.sec(x), 0.1);
+    public void values() {
+        for (Object[] i : Datasets.set) {
+            Assert.assertEquals((Double)i[1], Math.sec((Double)i[0]), 1E-323);
         }
     }
 }

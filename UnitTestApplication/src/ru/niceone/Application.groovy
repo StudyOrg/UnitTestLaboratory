@@ -34,7 +34,7 @@ class Application {
         }
 
 
-        final double begin = -30
+        final double begin = -80
         final double end = -begin
 
         final double step = 1.0
@@ -52,7 +52,7 @@ class Application {
         printf "sec(NaN) is     %f\n", Math.sec(Double.NaN)
         printf "sec(0) is       %f\n", Math.sec(0)
         printf "sec(20) is      %f\n", Math.sec(20)
-        printf "sec(-20) is     %f\n", Math.sec(-20)
+        printf "sec(-30) is     %f\n", Math.sec(-30)
 
         File export = new File("Results/sec_compare.csv")
         export.setText ""
@@ -69,15 +69,14 @@ class Application {
         File table = new File("Results/table.txt")
         table.setText ""
 
-        table << "static final double step = " << step << ";\n\n"
-        table << "static final double begin = " << begin << ";\n\n"
-        table << "static final double end = " << end << ";\n"
+        table << "static final double step = " << step << ";\n"
+        table << "static final double begin = " << begin << ";\n"
+        table << "static final double end = " << end << ";\n\n"
 
-        table << "static final double[] set = {\n"
-        for(double i = begin; i < end; i += step) {
-            table << "    " << Math.sec(i) << ",\n"
+        table << "static final Object[][] set = {\n"
+        for(double x = begin; x <= end; x += step) {
+            table << "    { ${x}, ${Math.sec(x)} },\n"
         }
-        table << "    " << Math.sec(end + step) << "\n"
-        table << "};\n\n"
+        table << "};"
     }
 }
