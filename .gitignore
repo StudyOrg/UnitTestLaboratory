@@ -20,3 +20,5 @@ Amplifine/*.iws
 
 # mpeltonen/sbt-idea plugin
 */.idea_modules/
+
+/Results/
