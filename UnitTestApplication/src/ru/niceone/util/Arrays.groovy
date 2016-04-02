@@ -16,4 +16,13 @@ class Arrays {
 
         return resultArray
     }
+
+    public static ArrayList operate(List a, List b, Closure c) {
+        def resultList = []
+        a.eachWithIndex { def entry, int i ->
+            resultList << c(entry, b[i])
+        }
+
+        return resultList
+    }
 }

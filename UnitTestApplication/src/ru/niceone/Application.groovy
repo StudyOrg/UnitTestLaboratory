@@ -2,6 +2,7 @@ package ru.niceone
 
 import ru.niceone.math.Math
 import ru.niceone.structures.MatrixGraph
+import ru.niceone.util.Arrays
 
 class Application {
 
@@ -9,10 +10,6 @@ class Application {
 
     public static void main(args) {
         File matrixVerticesJson = new File(JSON)
-
-        def a = new File("a")
-        println a.absolutePath
-        println matrixVerticesJson.absolutePath
 
         MatrixGraph<String> g = new MatrixGraph<>()
 
@@ -36,20 +33,30 @@ class Application {
             println "Not founded, path " + result.path
         }
 
-        ArrayList<Double> cosResults = new ArrayList<>()
-        for (double x = 0.0; x < 2.0; x += 0.1) {
+        double from = 0.0
+        double to = 80.0
+        double step = 2
+
+        def customCosineCalc = []
+        for (double x = from; x < to; x += step) {
             double a = Math.cos(x)
-            cosResults << a
+            customCosineCalc << a
         }
 
-        println("Косинус от Ромы: ${cosResults.join("\t")}")
-
-        cosResults = []
-        for (double x = 0.0; x < 2.0; x += 0.1) {
+        def javaCosineCalc = []
+        for (double x = from; x < to; x += step) {
             double a = java.lang.Math.cos(x)
-            cosResults << a
+            javaCosineCalc << a
         }
 
-        println("Косинус от жавы: ${cosResults.join("\t")}")
+        File export = new File("Results/cosine_compare.csv")
+        export.setText("")
+
+        export << "Custom cos(x);"
+        export << customCosineCalc.collect { val -> return val.toString().replace('.', ',') }.join(";")
+        export << ";\n" << "Lib cos(x);"
+        export << javaCosineCalc.collect { val -> return val.toString().replace('.', ',') }.join(";")
+        export << ";\n" << "Diff;"
+        export << Arrays.operate(customCosineCalc, javaCosineCalc, { a, b -> a - b}).collect { val -> return val.toString().replace('.', ',') }.join(";")
     }
 }
