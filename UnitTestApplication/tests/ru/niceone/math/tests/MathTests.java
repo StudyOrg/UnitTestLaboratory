@@ -16,7 +16,7 @@ public class MathTests {
     @Test
     public void values() {
         for (Object[] i : Datasets.set) {
-            Assert.assertEquals((Double)i[1], Math.sec((Double)i[0]), 1E-323);
+            Assert.assertEquals((Double)i[1], Math.sec((Double)i[0]), 1E-2);
         }
     }
 }

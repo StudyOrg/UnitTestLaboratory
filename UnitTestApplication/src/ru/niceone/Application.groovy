@@ -34,7 +34,7 @@ class Application {
         }
 
 
-        final double begin = -80
+        final double begin = -30
         final double end = -begin
 
         final double step = 1.0
@@ -69,13 +69,9 @@ class Application {
         File table = new File("Results/table.txt")
         table.setText ""
 
-        table << "static final double step = " << step << ";\n"
-        table << "static final double begin = " << begin << ";\n"
-        table << "static final double end = " << end << ";\n\n"
-
         table << "static final Object[][] set = {\n"
         for(double x = begin; x <= end; x += step) {
-            table << "    { ${x}, ${Math.sec(x)} },\n"
+            table << "    { ${x}, ${1 / java.lang.Math.cos(x)} },\n"
         }
         table << "};"
     }
