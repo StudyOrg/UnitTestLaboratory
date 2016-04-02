@@ -1,5 +1,8 @@
 package ru.niceone
 
+import ru.niceone.galaxy.environment.Environment
+import ru.niceone.galaxy.human.*
+
 import ru.niceone.math.Math
 import ru.niceone.structures.MatrixGraph
 import ru.niceone.util.Arrays
@@ -7,6 +10,20 @@ import ru.niceone.util.Arrays
 class Application {
 
     private static final String JSON = "Datasets/data.json"
+
+    public static void startTale() {
+        Environment env = new Environment()
+
+        Ford ford = new Ford()
+        Arthur art = new Arthur()
+
+        ford.findSwitch(env)
+
+        art.getUp()
+        art.hugYourlef()
+        art.lookAround(env)
+        art.tryToFocus(env)
+    }
 
     public static void main(args) {
         File matrixVerticesJson = new File(JSON)
@@ -74,5 +91,7 @@ class Application {
             table << "    { ${x}, ${1 / java.lang.Math.cos(x)} },\n"
         }
         table << "};"
+
+        startTale()
     }
 }
