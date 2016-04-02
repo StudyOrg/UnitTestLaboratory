@@ -12,4 +12,13 @@ public class Match {
 
         return true;
     }
+
+    public String getStatement() {
+        String state = "Match is ";
+
+        if (this.isGlow)
+            return state + "on.";
+        else
+            return state + "off.";
+    }
 }

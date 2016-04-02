@@ -20,7 +20,7 @@ class Application {
         ford.findSwitch(env)
 
         art.getUp()
-        art.hugYourlef()
+        art.hugYourself()
         art.lookAround(env)
         art.tryToFocus(env)
     }

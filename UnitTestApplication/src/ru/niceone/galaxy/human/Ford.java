@@ -19,4 +19,17 @@ public class Ford {
             environment.shadows.toLoom();
         }
     }
+
+    public String getStatement() {
+        String state;
+
+        if (this.match != null) {
+            state = "Ford has match. ";
+            state += this.match.getStatement();
+        } else {
+            state = "Ford has no things.";
+        }
+
+        return state;
+    }
 }

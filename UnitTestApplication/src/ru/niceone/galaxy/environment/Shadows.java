@@ -18,4 +18,20 @@ public class Shadows {
     public Boolean isLoomingLeaping() {
         return this.looming && this.leaping && this.isMonstrous;
     }
+
+    public String getStatement() {
+        String state = (this.isMonstrous) ? "Monstrous shadows" : "Shadows";
+
+        state += (this.leaping) ? " leaping" : "";
+
+        if (this.leaping && this.looming) {
+            state += " and leaping";
+        } else if (this.looming) {
+            state += " looming";
+        } else if (!this.leaping) {
+            state += " stopped";
+        }
+
+        return state + ".";
+    }
 }

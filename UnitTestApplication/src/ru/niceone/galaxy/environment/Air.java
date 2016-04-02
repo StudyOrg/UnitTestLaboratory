@@ -6,4 +6,12 @@ public class Air {
     public Air() {
         smell = new Smell();
     }
+
+    public String getStatement() {
+        if (this.smell != null) {
+            return this.smell.getStatement();
+        } else {
+            return "Air is clear from the smells.";
+        }
+    }
 }
