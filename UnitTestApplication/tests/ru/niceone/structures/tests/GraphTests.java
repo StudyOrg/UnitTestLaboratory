@@ -54,12 +54,12 @@ public class GraphTests {
 
     @Test
     public void graph_searching_big() {
-        Integer[] excpectedPathOne = {0, 1, 5, 2, 3, 6};
+        Integer[] expectedPathOne = {0, 1, 5, 2, 3, 6};
         graph.setGraph(Arrays.asList(Datasets.dataset_big), ru.niceone.util.Arrays.asListTwoDimensional(Datasets.matrix_big));
         result = graph.breadthFirstSearch("Eta");
 
         Assert.assertTrue(result.founded);
-        Assert.assertArrayEquals(result.path.toArray(), excpectedPathOne);
+        Assert.assertArrayEquals(result.path.toArray(), expectedPathOne);
 
         result = graph.breadthFirstSearch("Foo");
         Assert.assertFalse(result.founded);
@@ -67,8 +67,17 @@ public class GraphTests {
 
     @Test
     public void program_nodes_visiting() {
+        String[] expectedNodesOne = {"A", "B", "B", "B", "C", "D", "F", "G", "H", "G", "H", "D", "F", "G", "D", "E"};
+        String[] expectedNodesTwo = {"A", "B", "B", "B", "C", "D", "F", "G", "H", "G", "H", "D", "F", "G", "D", "F", "G", "J"};
         graph.setGraph(Arrays.asList(Datasets.dataset_small), ru.niceone.util.Arrays.asListTwoDimensional(Datasets.matrix_small));
+
         result = graph.breadthFirstSearch("Fee");
+
+        Assert.assertArrayEquals(result.programNodes.toArray(), expectedNodesOne);
+
+        result = graph.breadthFirstSearch("Bee");
+
+        Assert.assertArrayEquals(result.programNodes.toArray(), expectedNodesTwo);
 
         System.out.println(result.programNodes);
     }

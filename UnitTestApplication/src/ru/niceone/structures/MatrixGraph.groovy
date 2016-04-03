@@ -84,58 +84,57 @@ public class MatrixGraph<T> {
     public SearchResultTest breadthFirstSearch(T object) {
         ArrayList<Boolean> nodesVisits = []
         ArrayList<Integer> path = []
-        ArrayList<String> programNode = []
+        ArrayList<String> programNodes = []
         Deque<Integer> queue = new ArrayDeque<>()
 
-        programNode << "A"
+        programNodes << "A"
 
         // Заполнение признака посещенного узла
         for (def i = 0; i < this.graphSize; i++) {
-            programNode << "B"
+            programNodes << "B"
             nodesVisits << false
         }
 
-        programNode << "C"
+        programNodes << "C"
 
         queue << 0
         nodesVisits[0] = true
 
         while (!queue.isEmpty()) {
-            programNode << "D"
+            programNodes << "D"
 
             int node = queue.removeFirst()
 
             path << node
 
             if (data[node] == object) {
-                programNode << "E"
+                programNodes << "E"
 
-                return new SearchResultTest(true, path, programNode)
+                return new SearchResultTest(true, path, programNodes)
             }
 
-            programNode << "F"
+            programNodes << "F"
 
             getChildren(node).each { int childNode ->
-                programNode << "G"
+                programNodes << "G"
 
                 if (!nodesVisits[childNode]) {
-                    programNode << "H"
+                    programNodes << "H"
 
                     queue.addLast(childNode)
                     nodesVisits[childNode] = true
                 }
             }
         }
-        programNode << "J"
+        programNodes << "J"
 
-        return new SearchResultTest(false, path, programNode)
+        return new SearchResultTest(false, path, programNodes)
     }
 
     public List getChildren(int node) {
-        def edges = this.matrix[node]
         def nodes = []
 
-        edges.eachWithIndex { edge, i ->
+        this.matrix[node].eachWithIndex { edge, i ->
             if (edge)
                 nodes << i
         }
