@@ -7,7 +7,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import ru.niceone.structures.BadFormatException;
 import ru.niceone.structures.MatrixGraph;
-import ru.niceone.structures.SearchResult;
+import ru.niceone.structures.SearchResultTest;
 
 import java.io.File;
 import java.util.Arrays;
@@ -15,7 +15,7 @@ import java.util.Arrays;
 public class GraphTests {
 
     private static MatrixGraph<String> graph;
-    private static SearchResult result;
+    private static SearchResultTest result;
     @Rule
     public ExpectedException exception = ExpectedException.none();
 
@@ -63,6 +63,14 @@ public class GraphTests {
 
         result = graph.breadthFirstSearch("Foo");
         Assert.assertFalse(result.founded);
+    }
+
+    @Test
+    public void program_nodes_visiting() {
+        graph.setGraph(Arrays.asList(Datasets.dataset_small), ru.niceone.util.Arrays.asListTwoDimensional(Datasets.matrix_small));
+        result = graph.breadthFirstSearch("Fee");
+
+        System.out.println(result.programNodes);
     }
 
     @Test

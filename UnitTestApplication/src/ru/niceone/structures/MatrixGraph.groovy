@@ -81,37 +81,54 @@ public class MatrixGraph<T> {
         this.graphSize = graphNodesCount
     }
 
-    public SearchResult breadthFirstSearch(T object) {
+    public SearchResultTest breadthFirstSearch(T object) {
         ArrayList<Boolean> nodesVisits = []
         ArrayList<Integer> path = []
+        ArrayList<String> programNode = []
         Deque<Integer> queue = new ArrayDeque<>()
+
+        programNode << "A"
 
         // Заполнение признака посещенного узла
         for (def i = 0; i < this.graphSize; i++) {
+            programNode << "B"
             nodesVisits << false
         }
+
+        programNode << "C"
 
         queue << 0
         nodesVisits[0] = true
 
         while (!queue.isEmpty()) {
+            programNode << "D"
+
             int node = queue.removeFirst()
 
             path << node
 
             if (data[node] == object) {
-                return new SearchResult(true, path)
+                programNode << "E"
+
+                return new SearchResultTest(true, path, programNode)
             }
 
+            programNode << "F"
+
             getChildren(node).each { int childNode ->
+                programNode << "G"
+
                 if (!nodesVisits[childNode]) {
+                    programNode << "H"
+
                     queue.addLast(childNode)
                     nodesVisits[childNode] = true
                 }
             }
         }
+        programNode << "J"
 
-        return new SearchResult(false, path)
+        return new SearchResultTest(false, path, programNode)
     }
 
     public List getChildren(int node) {

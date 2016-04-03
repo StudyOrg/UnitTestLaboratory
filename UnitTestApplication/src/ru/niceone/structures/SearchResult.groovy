@@ -1,6 +1,6 @@
 package ru.niceone.structures
 
-class SearchResult {
+public class SearchResult {
     public boolean founded
     public ArrayList<Integer> path
 
