@@ -78,8 +78,6 @@ public class GraphTests {
         result = graph.breadthFirstSearch("Bee");
 
         Assert.assertArrayEquals(result.programNodes.toArray(), expectedNodesTwo);
-
-        System.out.println(result.programNodes);
     }
 
     @Test
