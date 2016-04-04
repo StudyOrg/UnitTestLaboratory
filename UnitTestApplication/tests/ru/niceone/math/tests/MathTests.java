@@ -7,10 +7,18 @@ import ru.niceone.math.Math;
 public class MathTests {
 
     @Test
-    public void nan_and_inf() {
+    public void nan() {
         Assert.assertTrue(Double.isNaN(Math.sec(Double.NaN)));
-        Assert.assertTrue(Double.isNaN(Math.sec(Double.POSITIVE_INFINITY)));
+    }
+
+    @Test
+    public void neg_inf() {
         Assert.assertTrue(Double.isNaN(Math.sec(Double.NEGATIVE_INFINITY)));
+    }
+
+    @Test
+    public void pos_inf() {
+        Assert.assertTrue(Double.isNaN(Math.sec(Double.POSITIVE_INFINITY)));
     }
 
     @Test
