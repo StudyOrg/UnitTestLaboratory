@@ -3,14 +3,14 @@ package ru.niceone.galaxy.environment.things;
 public class Match {
     public Boolean isGlow = false;
 
-    public Boolean struckMatch() {
+    public void struckMatch() {
         if (!this.isGlow) {
             System.out.println(" struck another match.");
 
             this.isGlow = true;
+        } else {
+            System.out.println("Match has already glow.");
         }
-
-        return true;
     }
 
     public String getStatement() {

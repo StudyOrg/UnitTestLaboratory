@@ -6,10 +6,10 @@ public class Lungs {
     Smell sidledSmell = null;
 
     public String getStatement() {
-        if (this.sidledSmell != null) {
-            return "There is no smell";
+        if (this.sidledSmell == null) {
+            return "There is no smell.";
         } else {
-            return "There is a smell";
+            return "There is " + sidledSmell.getStatement();
         }
     }
 }

@@ -13,6 +13,7 @@ class Application {
 
     public static void startTale() {
         Environment env = new Environment()
+        env.air.smellInTheAir()
 
         Ford ford = new Ford()
         Arthur art = new Arthur()

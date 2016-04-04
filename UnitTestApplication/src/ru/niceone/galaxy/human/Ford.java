@@ -12,7 +12,8 @@ public class Ford {
 
     public void findSwitch(Environment environment) {
         System.out.print("Ford");
-        if (this.match.struckMatch()) {
+        this.match.struckMatch();
+        if (this.match.isGlow) {
             System.out.println("Now I'm starting to find light switcher.");
 
             environment.shadows.toLeap();

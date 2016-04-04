@@ -3,8 +3,16 @@ package ru.niceone.galaxy.human;
 import ru.niceone.galaxy.environment.Environment;
 
 public class Arthur extends Human {
+    public static final String ACTIVE_STATE =
+            "Arthur struggled to his feet and hugged himself apprehensively. Now he can look around and try to focus on situation.";
+
+    public static final String LYING_STATE = "Arthur is lying and can't do anything.";
+
+    public static final String READY_STATE =
+            "Arthur struggled to his feet. And now he can hug yourself, look around and try to focus on situation.";
+
     Boolean isLying = true;
-    Boolean isHugged = true;
+    Boolean isHugged = false;
 
     public void getUp() {
         this.isLying = false;
@@ -34,11 +42,11 @@ public class Arthur extends Human {
 
     public String getStatement() {
         if (this.isLying) {
-            return "Arthur is lying and can't do anything.";
+            return LYING_STATE;
         } else if (this.isHugged) {
-            return "Arthur struggled to his feet and hugged himself apprehensively. Now he can look around and try to focus on situation.";
+            return ACTIVE_STATE;
         } else {
-            return "Arthur struggled to his feet. And now he can hug yourself, look around and try to focus on situation.";
+            return READY_STATE;
         }
     }
 }

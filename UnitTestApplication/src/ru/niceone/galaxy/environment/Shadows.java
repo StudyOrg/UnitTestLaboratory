@@ -25,7 +25,7 @@ public class Shadows {
         state += (this.leaping) ? " leaping" : "";
 
         if (this.leaping && this.looming) {
-            state += " and leaping";
+            state += " and looming";
         } else if (this.looming) {
             state += " looming";
         } else if (!this.leaping) {

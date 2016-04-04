@@ -3,8 +3,8 @@ package ru.niceone.galaxy.human;
 import ru.niceone.galaxy.environment.Air;
 
 public class Human {
-    Nose nose;
-    Lungs lungs;
+    public Nose nose;
+    public Lungs lungs;
 
     public Human() {
         nose = new Nose();
@@ -12,8 +12,6 @@ public class Human {
     }
 
     public void makeBreath(Air air) {
-        if (nose.tryIdentifySmell(air) == null) {
-            lungs.sidledSmell = air.smell;
-        }
+        lungs.sidledSmell = nose.tryIdentifySmell(air);
     }
 }

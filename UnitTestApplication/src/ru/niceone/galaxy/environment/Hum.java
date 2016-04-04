@@ -1,21 +1,23 @@
 package ru.niceone.galaxy.environment;
 
 public class Hum {
-    Boolean isSounding = true;
-    Boolean isLow = true;
+    Boolean isSounding;
+    Boolean isLow;
+
+    public Hum() {
+        isLow =  true;
+        isSounding = true;
+    }
 
     public Boolean isLowHum() {
         return this.isLow && this.isSounding;
     }
 
     public String getStatement() {
-        String state = "Hum is ";
+        String state = (this.isLow ? "Low h" : "H");
+        state += "um is ";
 
-        state += (this.isSounding) ? "sounding" : "not sounding now.";
-
-        if (this.isSounding && this.isLow) {
-            state += " and low.";
-        }
+        state += (this.isSounding) ? "sounding." : "not sounding now.";
 
         return state;
     }
