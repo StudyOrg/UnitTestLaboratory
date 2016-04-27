@@ -26,7 +26,7 @@ class Application {
         art.tryToFocus(env)
     }
 
-    public static void main(args) {
+    public static void mainDep(args) {
         File matrixVerticesJson = new File(JSON)
 
         MatrixGraph<String> g = new MatrixGraph<>()
@@ -94,5 +94,9 @@ class Application {
         table << "};"
 
         startTale()
+    }
+
+    public static void main(args) {
+        /* New main*/
     }
 }
