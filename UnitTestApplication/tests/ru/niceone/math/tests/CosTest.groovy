@@ -46,7 +46,7 @@ class CosTest {
 
     @Test
     public void half_PI() {
-        Assert.assertEquals(Double.NaN, cos(PI/2.0), PRECISION);
+        Assert.assertEquals(0.0, cos(PI/2.0), PRECISION);
     }
 
     @Test

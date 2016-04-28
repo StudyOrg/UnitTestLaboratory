@@ -19,14 +19,18 @@ public class Math {
      * @return косинус аргумента
      */
     public static double cos(double x) {
-        double sqrCosX = 1 - pow(sin(x), 2);
+        if (x == PI/2)
+            return 0.0;
+
+        double sqrCosX = 1 - (sin(x) * sin(x));
         return sqrt(sqrCosX);
     }
 
     /**
      * <p>Функция, вычисляющая значение котангенса угла через функции синуса и косинуса.</p>
      * <p>Особые случаи:</p>
-     * <ul><li>Если аргумент равен NaN или infinity, то функция возвращает NaN</li></ul>
+     * <ul><li>Если аргумент равен NaN или infinity, то функция возвращает NaN</li>
+     * <li>Если аргумент равен 0, то функция возвращает infinity</li></ul>
      *
      * @param x угол, в радианах
      * @return котангенс аргумента
