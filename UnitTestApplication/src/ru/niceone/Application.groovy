@@ -1,59 +1,17 @@
 package ru.niceone
 
-import ru.niceone.galaxy.environment.Environment
-import ru.niceone.galaxy.human.*
-
 import ru.niceone.math.Math
-import ru.niceone.structures.MatrixGraph
+import ru.niceone.useless.FancyFunction
 import ru.niceone.util.Arrays
 
 class Application {
 
-    private static final String JSON = "Datasets/data.json"
-
-    public static void startTale() {
-        Environment env = new Environment()
-        env.air.smellInTheAir()
-
-        Ford ford = new Ford()
-        Arthur art = new Arthur()
-
-        ford.findSwitch(env)
-
-        art.getUp()
-        art.hugYourself()
-        art.lookAround(env)
-        art.tryToFocus(env)
-    }
-
-    public static void mainDep(args) {
-        File matrixVerticesJson = new File(JSON)
-
-        MatrixGraph<String> g = new MatrixGraph<>()
-
-        g.setGraph(["X", "Y", "Z"], [[0, 1, 1], [1, 0, 0], [1, 0, 0]])
-
-        def result = g.breadthFirstSearch("Y")
-
-        if (result.founded) {
-            println "Founded at " + (result.path == [0] ? "beginning" : result.path)
-        } else {
-            println "Not founded, path " + result.path
-        }
-
-        g.loadFromJson(matrixVerticesJson)
-
-        result = g.breadthFirstSearch("L")
-
-        if (result.founded) {
-            println "Founded at " + (result.path == [0] ? "beginning" : result.path)
-        } else {
-            println "Not founded, path " + result.path
-        }
-
+    public static void main(argv) {
 
         final double begin = -30
         final double end = -begin
+
+        println FancyFunction.calc(5)
 
         final double step = 1.0
 
@@ -92,11 +50,5 @@ class Application {
             table << "    { ${x}, ${1 / java.lang.Math.cos(x)} },\n"
         }
         table << "};"
-
-        startTale()
-    }
-
-    public static void main(args) {
-        /* New main*/
     }
 }
