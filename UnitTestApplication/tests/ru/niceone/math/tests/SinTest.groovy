@@ -11,17 +11,17 @@ class SinTest {
 
     @Test
     public void nan() {
-        Assert.assertTrue(Double.isNaN(sin(Double.NaN)));
+        Assert.assertEquals(Double.NaN, sin(Double.NaN), PRECISION);
     }
 
     @Test
     public void negative_infinity() {
-        Assert.assertTrue(Double.isNaN(sin(Double.NEGATIVE_INFINITY)));
+        Assert.assertEquals(Double.NaN, sin(Double.NEGATIVE_INFINITY), PRECISION);
     }
 
     @Test
     public void positive_infinity() {
-        Assert.assertTrue(Double.isNaN(sin(Double.POSITIVE_INFINITY)));
+        Assert.assertEquals(Double.NaN, sin(Double.POSITIVE_INFINITY), PRECISION);
     }
 
     @Test
@@ -40,17 +40,17 @@ class SinTest {
     }
 
     @Test
-    public void near_HalfPI_less() {
+    public void near_half_PI_less() {
         Assert.assertEquals(0.9999500004166652777802579337522066732, sin(PI/2.0 - 0.01), PRECISION);
     }
 
     @Test
-    public void HalfPI() {
+    public void half_PI() {
         Assert.assertEquals(1.0, sin(PI/2.0), PRECISION);
     }
 
     @Test
-    public void near_HalfPI_greater() {
+    public void near_half_PI_greater() {
         Assert.assertEquals(0.9999500004166652777802579337522066732, sin(PI/2.0 + 0.01), PRECISION);
     }
 }
