@@ -12,6 +12,7 @@ class Application {
         final double end = -begin
 
         println FancyFunction.calc(5)
+        println Math.ln(5)
 
         final double step = 1.0
 

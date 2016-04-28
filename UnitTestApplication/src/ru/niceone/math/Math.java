@@ -1,9 +1,12 @@
 package ru.niceone.math;
 
+import static java.lang.Math.abs;
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 
 public class Math {
+    private static final Double PRECISION = 0.01;
+
     private Math() {
     }
 
@@ -122,15 +125,23 @@ public class Math {
         double term = nominator;
         double sum = term;
 
-        for (int i = 2; term > 0.0 && i != Integer.MAX_VALUE; i++) {
-            term *= nominator / i;
+        double i = 2.0;
+        double diff;
 
-            if ((i % 2) == 0) {
+        do {
+            diff = term;
+            term = pow(nominator, i) / i;
+
+            if ((i % 2) == 1) {
                 sum -= term;
             } else {
                 sum += term;
             }
-        }
+
+            diff = abs(term - diff);
+
+            i += 1.0;
+        } while (diff > PRECISION);
 
         return sum;
     }
@@ -147,7 +158,7 @@ public class Math {
      * @return показатель степени
      */
     public static double log_2(double x) {
-        return (ln(x) / ln(2));
+        return (ln(x) / ln(2.0));
     }
 
     /**
@@ -162,7 +173,7 @@ public class Math {
      * @return показатель степени
      */
     public static double log_3(double x) {
-        return (ln(x) / ln(3));
+        return (ln(x) / ln(3.0));
     }
 
     /**
@@ -176,9 +187,7 @@ public class Math {
      * @param x логарифмируемое число
      * @return показатель степени
      */
-    public static double log_5(double x) {
-        return (ln(x) / ln(5));
-    }
+    public static double log_5(double x) { return (ln(x) / ln(5.0)); }
 
     /**
      * <p>Функция, вычисляющая логарифм числа по основанию 10.</p>
@@ -191,7 +200,5 @@ public class Math {
      * @param x логарифмируемое число
      * @return показатель степени
      */
-    public static double log_10(double x) {
-        return (ln(x) / ln(10));
-    }
+    public static double log_10(double x) { return (ln(x) / ln(10.0)); }
 }

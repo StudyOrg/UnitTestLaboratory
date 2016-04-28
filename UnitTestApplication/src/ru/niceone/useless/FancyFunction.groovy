@@ -30,7 +30,16 @@ public class FancyFunction {
         )
     }
 
+    private static double logarithm(double x) {
+        return (
+                (
+                        ( ((ln(x) * log_5(x)) - log_3(x)) * (log_10(x) * ln(x)) ) ** 3
+                ) *
+                (log_3(x) * (log_2(x) * log_5(x)))
+        )
+    }
+
     public static double calc(double x) {
-        return trigonometry(x)
+        return logarithm(x)
     }
 }
