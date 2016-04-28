@@ -113,48 +113,6 @@ public class Math {
      * @param x логарифмируемое число
      * @return показатель степени
      */
-    public static double qln(double x) {
-        if (x == 0)
-            return Double.NEGATIVE_INFINITY;
-        if (x < 0)
-            return Double.NaN;
-        if (!(x < Double.POSITIVE_INFINITY))
-            return x;
-
-        double nominator = x - 1;
-        double term = nominator;
-        double sum = term;
-
-        double diff = Double.MAX_VALUE;
-
-        for (int i = 2; i < Integer.MAX_VALUE && abs(term - diff) >= PRECISION; i++) {
-            diff = term;
-            term = pow(nominator, i) / i;
-
-            System.out.printf("[%f] ", diff);
-
-            if ((i % 2) == 1) {
-                sum -= term;
-            } else {
-                sum += term;
-            }
-
-            i += 1.0;
-        }
-
-        return sum;
-    }
-
-    private static double q(double x, int n, double partialTerm) {
-        double sign = (n % 2 == 1) ? -1 : 1;
-
-        return partialTerm * (
-                (n * (1 + sign - x) + sign)
-                        /
-                        (n * (n + 1))
-        );
-    }
-
     public static double ln(double x) {
         if (x == 0)
             return Double.NEGATIVE_INFINITY;
@@ -178,13 +136,6 @@ public class Math {
             prevSum = sum;
             sum += term / i;
         }
-
-//        do {
-//            prevSum = sum;
-//            term *= termFactor;
-//            sum += term / n;
-//            n++;
-//        } while (PRECISION <= abs(sum - prevSum) && n < Integer.MAX_VALUE);
 
         return sum;
     }

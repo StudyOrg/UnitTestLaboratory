@@ -34,7 +34,7 @@ class LogarithmTests {
 
     @Test
     public void near_zero_negative() {
-        Assert.assertEquals(Double.NaN, ln(-0.000000000001), PRECISION)
+        Assert.assertEquals(Double.NaN, ln(-0.5), PRECISION)
     }
 
     @Test
@@ -46,7 +46,7 @@ class LogarithmTests {
 
     @Test
     public void near_zero_positive() {
-        Assert.assertEquals(-27.6310211159285482082158974562123704912132178635452, ln(0.000000000001), PRECISION)
+        Assert.assertEquals(-0.69314718055994530941723212145817656807550013436025, ln(0.5), PRECISION)
     }
 
     @Test
