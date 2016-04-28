@@ -141,7 +141,7 @@ public class Math {
             diff = abs(term - diff);
 
             i += 1.0;
-        } while (diff > PRECISION);
+        } while (diff > PRECISION && pow(nominator, i + 1) < Double.POSITIVE_INFINITY);
 
         return sum;
     }
