@@ -4,11 +4,12 @@ import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 
 public class Math {
-    private Math() {}
+    private Math() {
+    }
 
     /**
      * <p><b>Тригонометрические функции</b></p>
-     *
+     * <p>
      * <p>Функция, вычисляющая значение коснуса угла через функцию синуса.</p>
      * <p>Особые случаи:</p>
      * <ul><li>Если аргумент равен NaN или infinity, то функция возвращает NaN</li></ul>
@@ -29,7 +30,9 @@ public class Math {
      * @param x угол, в радианах
      * @return котангенс аргумента
      */
-    public static double cot(double x) { return cos(x)/sin(x); }
+    public static double cot(double x) {
+        return cos(x) / sin(x);
+    }
 
     /**
      * <p>Функция, вычисляющая значение косеканса угла через функцию синуса.</p>
@@ -40,7 +43,9 @@ public class Math {
      * @param x угол, в радианах
      * @return косеканс аргумента
      */
-    public static double csc(double x) { return 1 / sin(x); }
+    public static double csc(double x) {
+        return 1 / sin(x);
+    }
 
     /**
      * <p>Функция, вычисляющая значение синуса угла методом разложения в ряд Тейлора.</p>
@@ -92,12 +97,12 @@ public class Math {
      * @param x угол, в радианах
      * @return тангенс аргумента
      */
-    public static double tan(double x) { return sin(x)/cos(x); }
+    public static double tan(double x) {
+        return sin(x) / cos(x);
+    }
 
 
     /**
-     * <p><b>Логарифмы</b></p>
-     *
      * <p>Функция, вычисляющая натуральный логарифм числа.</p>
      * <p>Особые случаи:</p>
      * <ul><li>Если аргумент равен NaN или -infinity, функция возвращает NaN</li>
@@ -142,7 +147,7 @@ public class Math {
      * @return показатель степени
      */
     public static double log_2(double x) {
-        return (ln(x)/ln(2));
+        return (ln(x) / ln(2));
     }
 
     /**
@@ -157,7 +162,7 @@ public class Math {
      * @return показатель степени
      */
     public static double log_3(double x) {
-        return (ln(x)/ln(3));
+        return (ln(x) / ln(3));
     }
 
     /**
@@ -172,7 +177,7 @@ public class Math {
      * @return показатель степени
      */
     public static double log_5(double x) {
-        return (ln(x)/ln(5));
+        return (ln(x) / ln(5));
     }
 
     /**
@@ -187,6 +192,6 @@ public class Math {
      * @return показатель степени
      */
     public static double log_10(double x) {
-        return (ln(x)/ln(10));
+        return (ln(x) / ln(10));
     }
 }
