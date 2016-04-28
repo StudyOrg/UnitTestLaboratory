@@ -1,11 +1,9 @@
 package ru.niceone.math;
 
-import static java.lang.Math.abs;
-import static java.lang.Math.pow;
-import static java.lang.Math.sqrt;
+import static java.lang.Math.*;
 
 public class Math {
-    private static final Double PRECISION = 0.01;
+    private static final Double PRECISION = 1E-5;
 
     private Math() {
     }
@@ -110,27 +108,30 @@ public class Math {
      * <p>Особые случаи:</p>
      * <ul><li>Если аргумент равен NaN или -infinity, функция возвращает NaN</li>
      * <li>Если аргумент равен infinity, функция возвращает infinity</li>
-     * <li>Если аргумент меньше или равен 0, функция возвращает NaN</li></ul>
+     * <li>Если аргумент меньше или равен 0, функция возвращает -infinity</li></ul>
      *
      * @param x логарифмируемое число
      * @return показатель степени
      */
-    public static double ln(double x) {
-        if (x == Double.NEGATIVE_INFINITY || x <= 0)
+    public static double qln(double x) {
+        if (x == 0)
+            return Double.NEGATIVE_INFINITY;
+        if (x < 0)
             return Double.NaN;
-        else if (!(x < Double.POSITIVE_INFINITY))
-            return Double.POSITIVE_INFINITY;
+        if (!(x < Double.POSITIVE_INFINITY))
+            return x;
 
         double nominator = x - 1;
         double term = nominator;
         double sum = term;
 
-        double i = 2.0;
-        double diff;
+        double diff = Double.MAX_VALUE;
 
-        do {
+        for (int i = 2; i < Integer.MAX_VALUE && abs(term - diff) >= PRECISION; i++) {
             diff = term;
             term = pow(nominator, i) / i;
+
+            System.out.printf("[%f] ", diff);
 
             if ((i % 2) == 1) {
                 sum -= term;
@@ -138,10 +139,43 @@ public class Math {
                 sum += term;
             }
 
-            diff = abs(term - diff);
-
             i += 1.0;
-        } while (diff > PRECISION && pow(nominator, i + 1) < Double.POSITIVE_INFINITY);
+        }
+
+        return sum;
+    }
+
+    private static double q(double x, int n, double partialTerm) {
+        double sign = n % 2 == 1 ? -1 : 1;
+
+        return partialTerm * (
+                (n * (1 + sign - x) + sign)
+                /
+                (n * (n + 1))
+        );
+    }
+
+    public static double ln(double x) {
+        if (x == 0)
+            return Double.NEGATIVE_INFINITY;
+        if (x < 0)
+            return Double.NaN;
+        if (!(x < Double.POSITIVE_INFINITY))
+            return x;
+
+        double term = x - 1;
+        double sum = term;
+
+        for (int i = 2; i < 20; i++) {
+            double t = q(x, i, term);
+            if (i % 2 == 1) {
+                sum += t;
+            } else {
+                sum -= t;
+            }
+
+            term *= (x - 1);
+        }
 
         return sum;
     }
@@ -187,7 +221,9 @@ public class Math {
      * @param x логарифмируемое число
      * @return показатель степени
      */
-    public static double log_5(double x) { return (ln(x) / ln(5.0)); }
+    public static double log_5(double x) {
+        return (ln(x) / ln(5.0));
+    }
 
     /**
      * <p>Функция, вычисляющая логарифм числа по основанию 10.</p>
@@ -200,5 +236,7 @@ public class Math {
      * @param x логарифмируемое число
      * @return показатель степени
      */
-    public static double log_10(double x) { return (ln(x) / ln(10.0)); }
+    public static double log_10(double x) {
+        return (ln(x) / ln(10.0));
+    }
 }
