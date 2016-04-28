@@ -50,11 +50,6 @@ class LogarithmTests {
     }
 
     @Test
-    public void between_zero_and_one_exclusive() {
-        Assert.assertEquals(-0.69314718055994530941723212145817656807550013436025, ln(0.5), PRECISION)
-    }
-
-    @Test
     public void near_one_less() {
         Assert.assertEquals(0.0, ln(0.999999999999), PRECISION)
     }
@@ -71,7 +66,7 @@ class LogarithmTests {
 
     @Test
     public void near_exp_less() {
-        Assert.assertEquals(1.0, ln(Math.E) - 0.000000000001, PRECISION)
+        Assert.assertEquals(0.9999999999996321205588284900107628, ln(Math.E - 0.000000000001), PRECISION)
     }
 
     @Test
@@ -81,7 +76,7 @@ class LogarithmTests {
 
     @Test
     public void near_exp_greater() {
-        Assert.assertEquals(1.0, ln(Math.E) + 0.000000000001, PRECISION)
+        Assert.assertEquals(1.000000000000367879441171374653953, ln(Math.E + 0.000000000001), PRECISION)
     }
 
     @Test
