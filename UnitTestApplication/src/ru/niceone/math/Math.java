@@ -3,7 +3,7 @@ package ru.niceone.math;
 import static java.lang.Math.*;
 
 public class Math {
-    private static final Double PRECISION = 1E-5;
+    private static final Double PRECISION = 1E-10;
 
     private Math() {
     }
@@ -146,12 +146,12 @@ public class Math {
     }
 
     private static double q(double x, int n, double partialTerm) {
-        double sign = n % 2 == 1 ? -1 : 1;
+        double sign = (n % 2 == 1) ? -1 : 1;
 
         return partialTerm * (
                 (n * (1 + sign - x) + sign)
-                /
-                (n * (n + 1))
+                        /
+                        (n * (n + 1))
         );
     }
 
@@ -163,19 +163,28 @@ public class Math {
         if (!(x < Double.POSITIVE_INFINITY))
             return x;
 
-        double term = x - 1;
-        double sum = term;
+        x = x / (x - 1);
 
-        for (int i = 2; i < 20; i++) {
-            double t = q(x, i, term);
-            if (i % 2 == 1) {
-                sum += t;
-            } else {
-                sum -= t;
-            }
+        double sum;
+        double prevSum = Double.MAX_VALUE;
 
-            term *= (x - 1);
+        double termFactor = 1 / x;
+        double term = termFactor;
+
+        sum = term;
+
+        for (int i = 2; abs(prevSum - sum) >= PRECISION && i < Integer.MAX_VALUE; i++) {
+            term *= termFactor;
+            prevSum = sum;
+            sum += term / i;
         }
+
+//        do {
+//            prevSum = sum;
+//            term *= termFactor;
+//            sum += term / n;
+//            n++;
+//        } while (PRECISION <= abs(sum - prevSum) && n < Integer.MAX_VALUE);
 
         return sum;
     }

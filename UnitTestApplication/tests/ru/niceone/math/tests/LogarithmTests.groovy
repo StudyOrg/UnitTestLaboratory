@@ -6,9 +6,10 @@ import org.junit.Test
 import static ru.niceone.math.Math.ln
 
 class LogarithmTests {
-    final double PRECISION = 1E-300;
+    final double PRECISION = 1E-9;
 
     /* Особые случаи */
+
     @Test
     public void nan() {
         Assert.assertEquals(Double.NaN, ln(Double.NaN), PRECISION)
@@ -25,6 +26,7 @@ class LogarithmTests {
     }
 
     /* Вне области определения функции */
+
     @Test
     public void negative() {
         Assert.assertEquals(Double.NaN, ln(-1), PRECISION)
@@ -41,6 +43,7 @@ class LogarithmTests {
     }
 
     /* Внутри области определения функции */
+
     @Test
     public void near_zero_positive() {
         Assert.assertEquals(-27.6310211159285482082158974562123704912132178635452, ln(0.000000000001), PRECISION)
