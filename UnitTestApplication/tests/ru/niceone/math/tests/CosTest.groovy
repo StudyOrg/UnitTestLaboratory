@@ -40,6 +40,21 @@ class CosTest {
     }
 
     @Test
+    public void near_minus_half_PI_less() {
+        Assert.assertEquals(0.00999983333416666468254243, cos((-PI/2.0) - 0.01), PRECISION);
+    }
+
+    @Test
+    public void minus_half_PI() {
+        Assert.assertEquals(0.0, cos(PI/2.0), PRECISION);
+    }
+
+    @Test
+    public void near_minus_half_PI_greater() {
+        Assert.assertNotEquals(-0.00999983333416666468254243, cos(-(PI/2.0) + 0.01), PRECISION);
+    }
+
+    @Test
     public void near_half_PI_less() {
         Assert.assertEquals(0.00999983333416666468254243, cos(PI/2.0 - 0.01), PRECISION);
     }
