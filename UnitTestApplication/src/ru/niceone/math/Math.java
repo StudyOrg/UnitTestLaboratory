@@ -68,7 +68,7 @@ public class Math {
         double term = x;
         double sum = x;
 
-        for (int i = 1; term > 0.0 && i != Integer.MAX_VALUE; i++) {
+        for (int i = 1; term != 0.0 && i != Integer.MAX_VALUE; i++) {
             term *= sqrX / ((2 * i + 1) * 2 * i);
 
             if ((i % 2) == 1) {
