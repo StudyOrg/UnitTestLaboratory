@@ -8,16 +8,16 @@ class Application {
 
     public static void main(argv) {
 
-        final double begin = -30
-        final double end = 30
+        final double begin = -15
+        final double end = 15
 
-        final double step = 1.0
+        final double step = 0.5
 
         def arguments = []
         def values = []
         for (double x = begin; x <= end; x += step) {
             arguments << x
-            values << 1 / 1//FancyFunction.calc(x)
+            values << FancyFunction.calc(x)
         }
 
         File export = new File("Results/fancy_values.csv")
@@ -36,8 +36,8 @@ class Application {
         println "Custom ln -> " + Math.ln(1.5)
         println "Stub ln   -> " + MathStubs.ln(1.5)
 
-        println "f -1.5 -> " + FancyFunction.calc(-1.5)
+        println "f -1.5 -> " + FancyFunction.calc(-3)
         println "f 0 -> " + FancyFunction.calc(0.0)
-        println "f 1.5 -> " + FancyFunction.calc(1.5)
+        println "f 1.5 -> " + FancyFunction.calc(3)
     }
 }

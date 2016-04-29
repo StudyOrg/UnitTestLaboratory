@@ -1,6 +1,7 @@
 package ru.niceone.math;
 
-import static java.lang.Math.*;
+import static java.lang.Math.abs;
+import static java.lang.Math.pow;
 
 public class Math {
     private static final Double PRECISION = 1E-10;
@@ -19,11 +20,9 @@ public class Math {
      * @return косинус аргумента
      */
     public static double cos(double x) {
-        if (x == PI/2)
-            return 0.0;
-
-        double sqrCosX = 1 - (sin(x) * sin(x));
-        return sqrt(sqrCosX);
+        double SPQR = sin(2 * x);
+        double SPQR2 = 2 * sin(x);
+        return x == 0.0 ? 1 : SPQR / SPQR2;
     }
 
     /**
