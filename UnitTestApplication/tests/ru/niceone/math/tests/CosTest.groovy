@@ -40,6 +40,11 @@ class CosTest {
     }
 
     @Test
+    public void x_symmetry() {
+        Assert.assertEquals(cos(5), cos(-5), PRECISION)
+    }
+
+    @Test
     public void near_minus_half_PI_less() {
         Assert.assertEquals(0.00999983333416666468254243, cos((-PI/2.0) - 0.01), PRECISION);
     }
