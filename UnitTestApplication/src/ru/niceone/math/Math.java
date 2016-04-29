@@ -118,27 +118,48 @@ public class Math {
      * @return показатель степени
      */
     public static double ln(double x) {
-        if (x == 0)
+        if (x == 0.0)
             return Double.NEGATIVE_INFINITY;
-        if (x < 0)
+        if (x < 0.0)
             return Double.NaN;
         if (!(x < Double.POSITIVE_INFINITY))
             return x;
 
-        x = x / (x - 1);
-
-        double sum;
+        double sum = 0.0;
         double prevSum = Double.MAX_VALUE;
 
-        double termFactor = 1 / x;
-        double term = termFactor;
+        if (x > 1) {
+            x = x / (x - 1);
 
-        sum = term;
+            double termFactor = 1 / x;
+            double term = termFactor;
 
-        for (int i = 2; abs(prevSum - sum) >= PRECISION && i < Integer.MAX_VALUE; i++) {
-            term *= termFactor;
-            prevSum = sum;
-            sum += term / i;
+            sum = term;
+
+            int i;
+
+            for (i = 2; abs(prevSum - sum) >= PRECISION && i < Integer.MAX_VALUE; i++) {
+                term *= termFactor;
+                prevSum = sum;
+                sum += term / i;
+            }
+        } else if (abs(x - 1) <= 1) {
+            double term = (x - 1);
+
+            sum = term;
+
+            int i;
+
+            for (i = 2; abs(prevSum - sum) >= PRECISION && i < Integer.MAX_VALUE; i++) {
+                term *= (x - 1);
+                prevSum = sum;
+
+                if ((i % 2) == 1) {
+                    sum += term / i;
+                } else {
+                    sum -= term / i;
+                }
+            }
         }
 
         return sum;

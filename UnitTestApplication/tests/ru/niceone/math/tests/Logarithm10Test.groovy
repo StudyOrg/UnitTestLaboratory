@@ -50,7 +50,7 @@ class Logarithm10Test {
     }
 
     @Test
-    public void near_one_less() {
+    public void near_one_below() {
         Assert.assertEquals(0.0, log_10(0.999999999999), PRECISION)
     }
 
@@ -60,12 +60,12 @@ class Logarithm10Test {
     }
 
     @Test
-    public void near_one_greater() {
+    public void near_one_above() {
         Assert.assertEquals(0.0, log_10(1.000000000001), PRECISION)
     }
 
     @Test
-    public void near_base_less() {
+    public void near_base_below() {
         Assert.assertEquals(0.99999999999995657055180967264576, log_10(10 - 0.000000000001), PRECISION)
     }
 
@@ -75,7 +75,7 @@ class Logarithm10Test {
     }
 
     @Test
-    public void near_base_greater() {
+    public void near_base_above() {
         Assert.assertEquals(1.000000000000043429, log_10(10 + 0.000000000001), PRECISION)
     }
 
