@@ -17,7 +17,7 @@ class Application {
         def values = []
         for (double x = begin; x <= end; x += step) {
             arguments << x
-            values << 1 / 1//FancyFunction.calc(x)
+            values << Math.cos(x)
         }
 
         File export = new File("Results/fancy_values.csv")
