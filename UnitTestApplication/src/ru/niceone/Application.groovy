@@ -8,10 +8,10 @@ class Application {
 
     public static void main(argv) {
 
-        final double begin = - java.lang.Math.PI * 5
-        final double end = - begin
+        final double begin = -java.lang.Math.PI * 3
+        final double end = -begin
 
-        final double step = java.lang.Math.PI / 4
+        final double step = java.lang.Math.PI / 16
 
         def arguments = []
         def values = []
@@ -20,14 +20,6 @@ class Application {
             //values << FancyFunction.calc(x)
             values << Math.cos(x)
         }
-
-        File export = new File("Results/fancy_values.csv")
-        export.setText ""
-
-        export << "x;"
-        export << arguments.collect { val -> return val.toString().replace('.', ',') }.join(";")
-        export << ";\n" << "fancy x ->;"
-        export << values.collect { val -> return val.toString().replace('.', ',') }.join(";")
 
         println "Java cos   -> " + java.lang.Math.cos(1.5)
         println "Custom cos -> " + Math.cos(1.5)
