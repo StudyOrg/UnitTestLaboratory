@@ -28,5 +28,9 @@ private static void exportFunction(Map args) {
 
 exportFunction range: (-30..30),
         step: 0.5,
-        functions: ["sin", "cos", "tan", "fancy"]
+        functions: ["sin", "cos", "tan", "cot", "sec", "scs", "fancy"]
+
+exportFunction range: (0..30),
+        step: 0.5,
+        functions: ["ln", "log_2", "log_3", "log_5", "log_10"]
 
