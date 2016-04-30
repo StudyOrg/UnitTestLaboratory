@@ -1,12 +1,12 @@
-package ru.niceone.math.tests
+package ru.niceone.math.tests.logarithm
 
 import org.junit.Assert
 import org.junit.Test
 
 import static ru.niceone.math.Math.ln
+import static ru.niceone.math.tests.Consts.PRECISION
 
 class LogarithmTests {
-    final double PRECISION = 1E-9;
 
     /* Особые случаи */
 
