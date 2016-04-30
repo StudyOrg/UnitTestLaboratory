@@ -8,16 +8,17 @@ class Application {
 
     public static void main(argv) {
 
-        final double begin = -15
-        final double end = 15
+        final double begin = - java.lang.Math.PI * 5
+        final double end = - begin
 
-        final double step = 0.5
+        final double step = java.lang.Math.PI / 4
 
         def arguments = []
         def values = []
         for (double x = begin; x <= end; x += step) {
             arguments << x
-            values << FancyFunction.calc(x)
+            //values << FancyFunction.calc(x)
+            values << Math.cos(x)
         }
 
         File export = new File("Results/fancy_values.csv")
