@@ -57,17 +57,12 @@ class FancyFunctionTest {
 
     @Test
     public void minus_half_pi_below() {
-        Assert.assertEquals(-4.973214239614786E31, calc(-PI / 2.0 - DELTA), PRECISION_SYS)
-    }
-
-    @Test
-    public void minus_half_pi() {
-        Assert.assertEquals(-1.6101094722439263E254, calc(-PI / 2.0), PRECISION_SYS)
+        Assert.assertEquals(-4.973214239523241E31, calc(-PI / 2.0 - DELTA), PRECISION_SYS)
     }
 
     @Test
     public void minus_half_pi_above() {
-        Assert.assertEquals(-5.023202989357259E31, calc(-PI / 2.0 + DELTA), PRECISION_SYS)
+        Assert.assertEquals(-5.023202989262296E31, calc(-PI / 2.0 + DELTA), PRECISION_SYS)
     }
 
     @Test
@@ -92,7 +87,7 @@ class FancyFunctionTest {
 
     @Test
     public void minus_pi() {
-        Assert.assertEquals(5.819645436199833E15, calc(-PI), PRECISION_SYS)
+        Assert.assertEquals(-4.0337858842080765E15, calc(-PI), PRECISION_SYS)
     }
 
     @Test

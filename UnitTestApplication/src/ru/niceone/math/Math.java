@@ -1,7 +1,6 @@
 package ru.niceone.math;
 
-import static java.lang.Math.abs;
-import static java.lang.Math.pow;
+import static java.lang.Math.*;
 
 public class Math {
     private static final Double PRECISION = 1E-10;
@@ -20,9 +19,16 @@ public class Math {
      * @return косинус аргумента
      */
     public static double cos(double x) {
-        double SPQR = sin(2 * x);
-        double SPQR2 = 2 * sin(x);
-        return x == 0.0 ? 1 : SPQR / SPQR2;
+        double sqrSin = pow(sin(x), 2);
+
+        double cos = sqrt(1 - sqrSin);
+        double limit = abs(abs(x) > PI*2 ? x % PI*2 : x);
+
+        if (limit > PI/2 && limit < 3*PI/2 || limit < PI/-2 && limit > -3*PI/2) {
+            cos *= -1;
+        }
+
+        return cos;
     }
 
     /**
@@ -76,6 +82,13 @@ public class Math {
                 sum += term;
             }
         }
+
+        if (sum > 1.0) {
+            sum = 1.0;
+        } else if(sum < -1.0) {
+            sum = -1.0;
+        }
+
 
         return sum;
     }

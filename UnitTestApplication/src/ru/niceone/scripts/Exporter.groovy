@@ -10,7 +10,7 @@ private static void exportFunction(Map args) {
         for (double x = args.range.getFrom(); x <= args.range.getTo(); x += args.step) {
             arguments << x
             if (fx == "fancy")
-                values = FancyFunction.calc(x)
+                values << FancyFunction.calc(x)
             else
                 values << Math."$fx"(x)
         }
@@ -28,9 +28,12 @@ private static void exportFunction(Map args) {
 
 exportFunction range: (-30..30),
         step: 0.5,
-        functions: ["sin", "cos", "tan", "cot", "sec", "csc", "fancy"]
+        functions: ["sin", "cos", "tan", "cot", "sec", "csc"]
 
 exportFunction range: (0..30),
         step: 0.5,
         functions: ["ln", "log_2", "log_3", "log_5", "log_10"]
 
+exportFunction range: (-12..10),
+        step: 0.5,
+        functions: ["fancy"]
