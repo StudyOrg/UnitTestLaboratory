@@ -2,15 +2,16 @@ package ru.niceone.youtube.tests
 
 import org.junit.Assert
 import org.junit.Test
-import org.openqa.selenium.*
-import org.openqa.selenium.firefox.FirefoxDriver
-
+import org.openqa.selenium.WebDriver
+import org.openqa.selenium.chrome.ChromeDriver
 
 class LogInTest {
 
     @Test
     public void EmptyLogIn() {
-        WebDriver driver = new FirefoxDriver()
+        System.setProperty("webdriver.chrome.driver", "c:/bin/selenium/chromedriver.exe");
+
+        WebDriver driver = new ChromeDriver()
 
         driver.navigate().to("http://seleniumsimplified.com")
         //WebElement element = driver.findElement(By.className("yt-lockup-thumbnail contains-addto"))
