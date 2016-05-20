@@ -1,27 +1,39 @@
 package ru.niceone.youtube.tests
 
+import org.junit.AfterClass
 import org.junit.Assert
+import org.junit.BeforeClass
 import org.junit.Test
-import org.openqa.selenium.WebDriver
+import org.openqa.selenium.*
 import org.openqa.selenium.chrome.ChromeDriver
 
 class LogInTest {
 
+    private static final String SIGN_IN_YOUTUBE_BUTTON = "//button[@class='yt-uix-button yt-uix-button-size-default yt-uix-button-primary']"
+    private static final String SIGN_IN_GOOGLE_BUTTON = "//input[@class='rc-button rc-button-submit']"
+
+    private static final String ERR_MSG_SPAN = "//*[contains(@class,'error-msg')]"
+
+    private static WebDriver driver
+
+    @BeforeClass
+    public static void init() {
+        System.setProperty("webdriver.chrome.driver", "c:/bin/selenium/chromedriver.exe");
+        driver = new ChromeDriver()
+    }
+
     @Test
     public void EmptyLogIn() {
-        System.setProperty("webdriver.chrome.driver", "c:/bin/selenium/chromedriver.exe");
+        driver.navigate().to("http://youtube.com")
+        driver.findElement(By.xpath(SIGN_IN_YOUTUBE_BUTTON)).click()
+        driver.findElement(By.xpath(SIGN_IN_GOOGLE_BUTTON)).click()
 
-        WebDriver driver = new ChromeDriver()
+        List<WebElement> list = driver.findElements(By.xpath(ERR_MSG_SPAN));
+        Assert.assertTrue("Text not found!", list.size() > 0);
+    }
 
-        driver.navigate().to("http://seleniumsimplified.com")
-        //WebElement element = driver.findElement(By.className("yt-lockup-thumbnail contains-addto"))
-
-
-
-        //Assert.assertTrue((element) ? true : false)
-
-        Assert.assertTrue(driver.getTitle().startsWith("Selenium Simplified"))
-
+    @AfterClass
+    public static void dest() {
         driver.close()
         driver.quit()
     }
