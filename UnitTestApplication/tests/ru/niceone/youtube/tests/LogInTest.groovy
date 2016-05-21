@@ -4,7 +4,9 @@ import org.junit.AfterClass
 import org.junit.Assert
 import org.junit.BeforeClass
 import org.junit.Test
-import org.openqa.selenium.*
+import org.openqa.selenium.By
+import org.openqa.selenium.WebDriver
+import org.openqa.selenium.WebElement
 import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.support.ui.ExpectedConditions
 import org.openqa.selenium.support.ui.WebDriverWait
@@ -16,7 +18,8 @@ class LogInTest {
 
     private static final String PROFILE_BUTTON = "//div[@id='yt-masthead-user']/span/button"
 
-    private static final String SIGN_IN_YOUTUBE_BUTTON = "//button[@class='yt-uix-button yt-uix-button-size-default yt-uix-button-primary']"
+    private static
+    final String SIGN_IN_YOUTUBE_BUTTON = "//button[@class='yt-uix-button yt-uix-button-size-default yt-uix-button-primary']"
     private static final String NEXT_GOOGLE_BUTTON = "//div[@class='slide-out ']/input[@type='submit']"
     private static final String SIGN_IN_GOOGLE_BUTTON = "//div[@class='slide-in']/input[@type='submit']"
 
@@ -32,7 +35,7 @@ class LogInTest {
 
     @Test
     public void findSignInYoutubeButton() {
-        driver.navigate().to("http://youtube.com")
+        driver.navigate().to(Links.mainPage)
 
         List<WebElement> list = driver.findElements(By.xpath(SIGN_IN_YOUTUBE_BUTTON));
         Assert.assertTrue("Button SignIn Youtube not found", list.size() > 0)
@@ -40,7 +43,7 @@ class LogInTest {
 
     @Test
     public void findNextGoogleButton() {
-        driver.navigate().to("https://accounts.google.com")
+        driver.navigate().to(Links.googleAccounts)
 
         List<WebElement> list = driver.findElements(By.xpath(NEXT_GOOGLE_BUTTON));
         Assert.assertTrue("Button SignIn Google Account not found", list.size() > 0)
@@ -48,7 +51,7 @@ class LogInTest {
 
     @Test
     public void emptyLogIn() {
-        driver.navigate().to("http://youtube.com")
+        driver.navigate().to(Links.mainPage)
 
         driver.findElement(By.xpath(SIGN_IN_YOUTUBE_BUTTON)).click()
 
@@ -60,7 +63,7 @@ class LogInTest {
 
     @Test
     public void incorrectLogIn() {
-        driver.navigate().to("http://youtube.com")
+        driver.navigate().to(Links.mainPage)
         driver.findElement(By.xpath(SIGN_IN_YOUTUBE_BUTTON)).click()
 
         driver.findElement(By.xpath(EMAIL_INPUT)).sendKeys("tcgvbhfsdf")
@@ -72,7 +75,7 @@ class LogInTest {
 
     @Test
     public void correctLogIn() {
-        driver.navigate().to("http://youtube.com")
+        driver.navigate().to(Links.mainPage)
         driver.findElement(By.xpath(SIGN_IN_YOUTUBE_BUTTON)).click()
 
         driver.findElement(By.xpath(EMAIL_INPUT)).sendKeys("smirnovsg15")
