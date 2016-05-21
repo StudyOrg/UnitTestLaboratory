@@ -59,7 +59,7 @@ class LikesTest {
         def prevDisLikes = Integer.parseInt(driver.findElements(By.xpath("$BUTTON/span"))[1].text.replaceAll(" ", ""))
         disLikeButton.click()
 
-        def newDisLikes = Integer.parseInt(driver.findElements(By.xpath("$BUTTON/span"))[1].text.replaceAll(" ", ""))
+        def newDisLikes = Integer.parseInt(driver.findElements(By.xpath("$BUTTON/span"))[0].text.replaceAll(" ", ""))
 
         Assert.assertTrue("Must be different previous!", newDisLikes != prevDisLikes)
 

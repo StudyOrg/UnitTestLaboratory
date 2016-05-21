@@ -15,7 +15,7 @@ class AccessTest {
 
     private static final String VIDEO_HEADER = "//span[@class='watch-title']"
     private static final String MAIN_PAGE_VFRAME = "//*[@class='item-section']/li/div/div/div[1]/div/div[2]/h3/a"
-    private static final String VIDEO_PAGE_VFRAME = "//h3[@class='yt-lockup-title']"
+    private static final String VIDEO_PAGE_VFRAME = "//h3[contains(@class,'yt-lockup-title')]"
 
     private static WebDriver driver
 
