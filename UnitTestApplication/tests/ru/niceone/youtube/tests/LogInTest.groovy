@@ -13,15 +13,14 @@ import org.openqa.selenium.support.ui.WebDriverWait
 
 class LogInTest {
 
-    private static final String EMAIL_INPUT = "//input[@type='email' and @name='Email']"
-    private static final String PASSWD_INPUT = "//input[@type='password' and @name='Passwd']"
+    public static final String EMAIL_INPUT = "//input[@type='email' and @name='Email']"
+    public static final String PASSWD_INPUT = "//input[@type='password' and @name='Passwd']"
 
     private static final String PROFILE_BUTTON = "//div[@id='yt-masthead-user']/span/button"
 
-    private static
-    final String SIGN_IN_YOUTUBE_BUTTON = "//button[@class='yt-uix-button yt-uix-button-size-default yt-uix-button-primary']"
-    private static final String NEXT_GOOGLE_BUTTON = "//div[@class='slide-out ']/input[@type='submit']"
-    private static final String SIGN_IN_GOOGLE_BUTTON = "//div[@class='slide-in']/input[@type='submit']"
+    public static final String SIGN_IN_YOUTUBE_BUTTON = "//button[@class='yt-uix-button yt-uix-button-size-default yt-uix-button-primary']"
+    public static final String NEXT_GOOGLE_BUTTON = "//div[@class='slide-out ']/input[@type='submit']"
+    public static final String SIGN_IN_GOOGLE_BUTTON = "//div[@class='slide-in']/input[@type='submit']"
 
     private static final String ERR_MSG_SPAN = "//span[text() and contains(@class,'error-msg')]"
 
