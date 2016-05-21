@@ -22,7 +22,7 @@ class LogInTest {
     public static final String NEXT_GOOGLE_BUTTON = "//div[@class='slide-out ']/input[@type='submit']"
     public static final String SIGN_IN_GOOGLE_BUTTON = "//div[@class='slide-in']/input[@type='submit']"
 
-    private static final String ERR_MSG_SPAN = "//span[text() and contains(@class,'error-msg')]"
+    private static final String ERR_MSG_SPAN = "//span[contains(@class,'error-msg')]"
 
     private static WebDriver driver
 

@@ -1,6 +1,7 @@
 package ru.niceone.youtube.tests
 
 import org.junit.AfterClass
+import org.junit.Assert
 import org.junit.BeforeClass
 import org.junit.Test
 
@@ -13,7 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait
 
 
 class LikesTest {
-    private static final String LIKE_BUTTON = "//span[contains(@class,'like-button-renderer')]/span/button[not(contains(@class,'hid'))]"
+    private static final String BUTTON = "//span[contains(@class,'like-button-renderer')]/span/button[not(contains(@class,'hid'))]"
 
     private static WebDriver driver
 
@@ -39,8 +40,30 @@ class LikesTest {
     public void likeVideo() {
         driver.navigate().to(Links.exampleVideo)
 
-        List<WebElement> test = driver.findElements(By.xpath(LIKE_BUTTON))
-        def a = "a"
+        WebElement likeButton = driver.findElements(By.xpath(BUTTON))[0]
+        def prevLikes = Integer.parseInt(driver.findElements(By.xpath("$BUTTON/span"))[0].text.replaceAll(" ", ""))
+        likeButton.click()
+
+        def newLikes = Integer.parseInt(driver.findElements(By.xpath("$BUTTON/span"))[0].text.replaceAll(" ", ""))
+
+        Assert.assertTrue("Must be different previous!", newLikes != prevLikes)
+
+        driver.findElements(By.xpath(BUTTON))[0].click()
+    }
+
+    @Test
+    public void disLikeVideo() {
+        driver.navigate().to(Links.exampleVideo)
+
+        WebElement disLikeButton = driver.findElements(By.xpath(BUTTON))[1]
+        def prevDisLikes = Integer.parseInt(driver.findElements(By.xpath("$BUTTON/span"))[1].text.replaceAll(" ", ""))
+        disLikeButton.click()
+
+        def newDisLikes = Integer.parseInt(driver.findElements(By.xpath("$BUTTON/span"))[1].text.replaceAll(" ", ""))
+
+        Assert.assertTrue("Must be different previous!", newDisLikes != prevDisLikes)
+
+        driver.findElements(By.xpath(BUTTON))[1].click()
     }
 
     @AfterClass
