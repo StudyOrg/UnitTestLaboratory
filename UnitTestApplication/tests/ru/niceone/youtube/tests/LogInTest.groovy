@@ -103,6 +103,24 @@ class LogInTest {
         driver = new ChromeDriver()
     }
 
+    @Test
+    public void incorrectPassword() {
+        driver.navigate().to(Links.mainPage)
+        driver.findElement(By.xpath(SIGN_IN_YOUTUBE_BUTTON)).click()
+
+        driver.findElement(By.xpath(EMAIL_INPUT)).sendKeys("smirnovsg15")
+        driver.findElement(By.xpath(NEXT_GOOGLE_BUTTON)).click()
+
+        WebDriverWait wait = new WebDriverWait(driver, 1)
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PASSWD_INPUT)))
+
+        driver.findElement(By.xpath(PASSWD_INPUT)).sendKeys("1234567")
+        driver.findElement(By.xpath(SIGN_IN_GOOGLE_BUTTON)).click()
+
+        List<WebElement> list = driver.findElements(By.xpath(ERR_MSG_SPAN))
+        Assert.assertTrue("Error message not expected!", list.size() > 2)
+    }
+
     @AfterClass
     public static void dest() {
         driver.close()

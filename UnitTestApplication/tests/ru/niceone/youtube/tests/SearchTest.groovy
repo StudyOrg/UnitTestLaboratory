@@ -7,6 +7,8 @@ import org.junit.Test
 import org.openqa.selenium.By
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeDriver
+import org.openqa.selenium.support.ui.ExpectedConditions
+import org.openqa.selenium.support.ui.WebDriverWait
 
 class SearchTest {
 
@@ -39,7 +41,9 @@ class SearchTest {
     @Test
     public void correct_title() {
         search(QUERY)
-        driver.findElement(By.xpath(SEARCH_RESULTS_BLOCK))
+
+        WebDriverWait wait = new WebDriverWait(driver, 5)
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(SEARCH_RESULTS_BLOCK)))
 
         Assert.assertEquals("$QUERY - YouTube".toString(), driver.getTitle())
     }
@@ -47,6 +51,9 @@ class SearchTest {
     @Test
     public void queried_video_founded() {
         search(QUERY)
+
+        WebDriverWait wait = new WebDriverWait(driver, 5)
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(VIDEO_PREVIEW_TITLE)))
 
         String title = driver.findElement(By.xpath(VIDEO_PREVIEW_TITLE)).getText()
 
@@ -56,6 +63,9 @@ class SearchTest {
     @Test
     public void bad_query_video_not_found() {
         search(BAD_QUERY)
+
+        WebDriverWait wait = new WebDriverWait(driver, 5)
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(VIDEO_NOT_FOUND_BLOCK)))
 
         String msg = driver.findElement(By.xpath(VIDEO_NOT_FOUND_BLOCK)).getText()
 
