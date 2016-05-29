@@ -15,6 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait
 
 class LikesTest {
     private static final String BUTTON = "//span[contains(@class,'like-button-renderer')]/span/button[not(contains(@class,'hid'))]"
+    private static final String VIDEO_TITLE = "//a[contains(@class,'l-video-title-link') and contains(text(), 'Evolution of Dance')]"
 
     private static WebDriver driver
 
@@ -49,6 +50,24 @@ class LikesTest {
         Assert.assertTrue("Must be different previous!", newLikes != prevLikes)
 
         driver.findElements(By.xpath(BUTTON))[0].click()
+    }
+
+    @Test
+    public void likeWithPlaylist() {
+        driver.navigate().to(Links.exampleVideo)
+
+        WebElement likeButton = driver.findElements(By.xpath(BUTTON))[0]
+        likeButton.click()
+
+        driver.navigate().to(Links.likePlaylist)
+
+        List<WebElement> videos = driver.findElements(By.xpath(VIDEO_TITLE))
+        Assert.assertTrue("Too fast", videos.size() == 0)
+
+        driver.navigate().to(Links.exampleVideo)
+
+        likeButton = driver.findElements(By.xpath(BUTTON))[0]
+        likeButton.click()
     }
 
     @Test
