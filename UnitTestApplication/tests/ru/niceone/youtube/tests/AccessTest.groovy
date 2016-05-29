@@ -48,9 +48,7 @@ class AccessTest {
         link.click()
 
         WebDriverWait wait = new WebDriverWait(driver, 5)
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(VIDEO_HEADER)))
-
-        Assert.assertEquals(text, driver.findElement(By.xpath(VIDEO_HEADER)).getText())
+        wait.until(ExpectedConditions.textToBePresentInElement(By.xpath(VIDEO_HEADER), text))
     }
 
     @AfterClass

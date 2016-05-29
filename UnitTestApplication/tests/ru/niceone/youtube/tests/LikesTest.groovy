@@ -62,7 +62,7 @@ class LikesTest {
         driver.navigate().to(Links.likePlaylist)
 
         List<WebElement> videos = driver.findElements(By.xpath(VIDEO_TITLE))
-        Assert.assertTrue("Too fast", videos.size() == 0)
+        Assert.assertTrue("Video must be in favourites", videos.size() == 0)
 
         driver.navigate().to(Links.exampleVideo)
 
