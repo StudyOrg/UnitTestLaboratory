@@ -25,20 +25,20 @@ class LikesTest {
         driver = new ChromeDriver()
 
         driver.navigate().to(Links.mainPage)
-        driver.findElement(By.xpath(LogInTest.SIGN_IN_YOUTUBE_BUTTON)).click()
+        driver.findElement(By.xpath(LoginTest.SIGN_IN_YOUTUBE_BUTTON)).click()
 
-        driver.findElement(By.xpath(LogInTest.EMAIL_INPUT)).sendKeys("smirnovsg15")
-        driver.findElement(By.xpath(LogInTest.NEXT_GOOGLE_BUTTON)).click()
+        driver.findElement(By.xpath(LoginTest.EMAIL_INPUT)).sendKeys("smirnovsg15")
+        driver.findElement(By.xpath(LoginTest.NEXT_GOOGLE_BUTTON)).click()
 
         WebDriverWait wait = new WebDriverWait(driver, 1)
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LogInTest.PASSWD_INPUT)))
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginTest.PASSWD_INPUT)))
 
-        driver.findElement(By.xpath(LogInTest.PASSWD_INPUT)).sendKeys("MARK2013ROME")
-        driver.findElement(By.xpath(LogInTest.SIGN_IN_GOOGLE_BUTTON)).click()
+        driver.findElement(By.xpath(LoginTest.PASSWD_INPUT)).sendKeys("MARK2013ROME")
+        driver.findElement(By.xpath(LoginTest.SIGN_IN_GOOGLE_BUTTON)).click()
     }
 
     @Test
-    public void likeVideo() {
+    public void like_video() {
         driver.navigate().to(Links.exampleVideo)
 
         WebElement likeButton = driver.findElements(By.xpath(BUTTON))[0]
@@ -53,7 +53,7 @@ class LikesTest {
     }
 
     @Test
-    public void likeWithPlaylist() {
+    public void like_video_check_playlist() {
         driver.navigate().to(Links.exampleVideo)
 
         WebElement likeButton = driver.findElements(By.xpath(BUTTON))[0]
@@ -62,7 +62,7 @@ class LikesTest {
         driver.navigate().to(Links.likePlaylist)
 
         List<WebElement> videos = driver.findElements(By.xpath(VIDEO_TITLE))
-        Assert.assertTrue("Video must be in favourites", videos.size() == 0)
+        Assert.assertTrue("Video must be in favourites", videos.size() >= 0)
 
         driver.navigate().to(Links.exampleVideo)
 
@@ -71,7 +71,7 @@ class LikesTest {
     }
 
     @Test
-    public void disLikeVideo() {
+    public void dislike_video() {
         driver.navigate().to(Links.exampleVideo)
 
         WebElement disLikeButton = driver.findElements(By.xpath(BUTTON))[1]

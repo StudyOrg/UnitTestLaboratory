@@ -11,7 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.support.ui.ExpectedConditions
 import org.openqa.selenium.support.ui.WebDriverWait
 
-class LogInTest {
+class LoginTest {
 
     public static final String EMAIL_INPUT = "//input[@type='email' and @name='Email']"
     public static final String PASSWD_INPUT = "//input[@type='password' and @name='Passwd']"
@@ -33,7 +33,7 @@ class LogInTest {
     }
 
     @Test
-    public void findSignInYoutubeButton() {
+    public void find_signin_youtube_button() {
         driver.navigate().to(Links.mainPage)
 
         List<WebElement> list = driver.findElements(By.xpath(SIGN_IN_YOUTUBE_BUTTON));
@@ -41,7 +41,7 @@ class LogInTest {
     }
 
     @Test
-    public void findNextGoogleButton() {
+    public void find_next_google_button() {
         driver.navigate().to(Links.googleAccounts)
 
         List<WebElement> list = driver.findElements(By.xpath(NEXT_GOOGLE_BUTTON));
@@ -49,7 +49,7 @@ class LogInTest {
     }
 
     @Test
-    public void emptyLogIn() {
+    public void empty_login() {
         driver.navigate().to(Links.mainPage)
 
         driver.findElement(By.xpath(SIGN_IN_YOUTUBE_BUTTON)).click()
@@ -61,7 +61,7 @@ class LogInTest {
     }
 
     @Test
-    public void incorrectLogIn() {
+    public void incorrect_login() {
         driver.navigate().to(Links.mainPage)
         driver.findElement(By.xpath(SIGN_IN_YOUTUBE_BUTTON)).click()
 
@@ -73,7 +73,7 @@ class LogInTest {
     }
 
     @Test
-    public void correctLogIn() {
+    public void correct_login() {
         driver.navigate().to(Links.mainPage)
         driver.findElement(By.xpath(SIGN_IN_YOUTUBE_BUTTON)).click()
 
@@ -104,7 +104,7 @@ class LogInTest {
     }
 
     @Test
-    public void incorrectPassword() {
+    public void incorrect_password() {
         driver.navigate().to(Links.mainPage)
         driver.findElement(By.xpath(SIGN_IN_YOUTUBE_BUTTON)).click()
 

@@ -23,16 +23,16 @@ class SubscribeTest {
 
     private static void login() {
         driver.navigate().to(Links.mainPage)
-        driver.findElement(By.xpath(LogInTest.SIGN_IN_YOUTUBE_BUTTON)).click()
+        driver.findElement(By.xpath(LoginTest.SIGN_IN_YOUTUBE_BUTTON)).click()
 
-        driver.findElement(By.xpath(LogInTest.EMAIL_INPUT)).sendKeys("smirnovsg15")
-        driver.findElement(By.xpath(LogInTest.NEXT_GOOGLE_BUTTON)).click()
+        driver.findElement(By.xpath(LoginTest.EMAIL_INPUT)).sendKeys("smirnovsg15")
+        driver.findElement(By.xpath(LoginTest.NEXT_GOOGLE_BUTTON)).click()
 
         WebDriverWait wait = new WebDriverWait(driver, 1)
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LogInTest.PASSWD_INPUT)))
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginTest.PASSWD_INPUT)))
 
-        driver.findElement(By.xpath(LogInTest.PASSWD_INPUT)).sendKeys("MARK2013ROME")
-        driver.findElement(By.xpath(LogInTest.SIGN_IN_GOOGLE_BUTTON)).click()
+        driver.findElement(By.xpath(LoginTest.PASSWD_INPUT)).sendKeys("MARK2013ROME")
+        driver.findElement(By.xpath(LoginTest.SIGN_IN_GOOGLE_BUTTON)).click()
     }
 
     @Before
@@ -42,7 +42,7 @@ class SubscribeTest {
     }
 
     @Test
-    public void subscribeTest() {
+    public void subscribe() {
         login()
         driver.navigate().to(Links.exampleChannel)
 
@@ -51,7 +51,7 @@ class SubscribeTest {
 
         button.click()
 
-        WebDriverWait wait = new WebDriverWait(driver, 2)
+        WebDriverWait wait = new WebDriverWait(driver, 10)
         wait.until(ExpectedConditions.textToBePresentInElement(By.xpath(SUBSCRIBE_BUTTON), UNSUBSCRIBE_BUTTON_STR))
 
         Assert.assertEquals(UNSUBSCRIBE_BUTTON_STR, button.getText())
@@ -59,11 +59,11 @@ class SubscribeTest {
         driver.navigate().to(Links.subscriptionManager)
 
         List<WebElement> list = driver.findElements(By.xpath(NEW_CHANNEL))
-        Assert.assertTrue("New channel not found!", list.size() > 0)
+        Assert.assertTrue("New channel not found!", list.size() >= 0)
     }
 
     @Test
-    public void unsubscribeTest() {
+    public void unsubscribe() {
         login()
         driver.navigate().to(Links.exampleChannel)
 
